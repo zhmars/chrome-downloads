@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Downloads",
+    "description": "Downloads"
+  },
+  "appDesc": {
+    "message": "Add a toolbar icon for `chrome://downloads`",
+    "description": "Add a toolbar icon for `chrome://downloads`"
+  }
+}
