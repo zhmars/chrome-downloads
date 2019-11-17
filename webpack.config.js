@@ -2,11 +2,12 @@ const path = require('path')
 
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const { version } = require('./package.json')
 
 const config = {
-  mode: process.env.NODE_ENV,
+  mode: process.env.NODE_ENV || 'development',
   context: path.resolve(__dirname, 'src'),
   entry: {
     background: './background.js'
@@ -16,6 +17,7 @@ const config = {
     filename: '[name].js'
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       { from: 'icons', to: 'icons' },
       { from: '_locales', to: '_locales' },
