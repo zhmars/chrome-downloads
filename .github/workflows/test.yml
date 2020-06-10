@@ -87,8 +87,8 @@ jobs:
         run: |
           git config --global user.name 'CI'
           git config --global user.email 'zhmars@users.noreply.github.com'
-          git tag -f nightly
-          git push origin --delete nightly
+          git tag -force nightly
+          git push origin --delete --force nightly
           git push origin HEAD --tags
 
       - name: Download Artifact
