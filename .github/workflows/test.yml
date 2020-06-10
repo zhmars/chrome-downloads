@@ -1,0 +1,33 @@
+---
+name: test
+on: [push, pull_request]
+
+env:
+  RULESET_CONVERTER_URL: https://github.com/bromite/filters/releases/download/78.0.3904.130/ruleset_converter
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+      - uses: actions/checkout@master
+
+      - name: Download dependencies
+        shell: bash
+        run: |
+          mkdir artifacts
+
+          curl -f -L ${RULESET_CONVERTER_URL} -o ruleset_converter || exit 1
+          curl -f -L https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt -o xinggsf_mv.txt  || exit 1
+
+          chmod u+x ruleset_converter
+          ruleset_converter --input_format=filter-list --output_format=unindexed-ruleset \
+            --input_files=xinggsf_mv.txt \
+            --output_file=artifacts/filters.dat 2> /dev/null
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: filters
+          path: ./package/artifacts
+
