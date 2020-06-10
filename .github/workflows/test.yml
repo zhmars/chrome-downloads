@@ -80,6 +80,10 @@ jobs:
         shell: bash
         run: |
           git config --global core.autocrlf input
+          git config --local user.name 'CI'
+          git config --local user.email 'zhmars@users.noreply.github.com'
+          git tag -f nightly
+          git push origin HEAD --tags
 
       - name: Download Artifact
         uses: actions/download-artifact@v1
@@ -93,7 +97,6 @@ jobs:
         with:
           tag_name: nightly
           body: |
-            ### Changes:
 
             bromite filters
 
