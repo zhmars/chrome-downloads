@@ -27,6 +27,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
+          name: artifacts
           path: ./artifacts
 
   release:
@@ -42,7 +43,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v1
         with:
-          name: filters
+          name: artifacts
 
       - name: Create Release
         uses: softprops/action-gh-release@9993ae8
