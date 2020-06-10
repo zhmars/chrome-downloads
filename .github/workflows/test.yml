@@ -19,10 +19,10 @@ jobs:
           curl -f -L ${RULESET_CONVERTER_URL} -o ruleset_converter || exit 1
           curl -f -L https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt -o xinggsf_mv.txt  || exit 1
 
-          # chmod u+x ruleset_converter
-          # ruleset_converter --input_format=filter-list --output_format=unindexed-ruleset \
-          #   --input_files=xinggsf_mv.txt \
-          #   --output_file=artifacts/filters.dat 2> /dev/null
+          chmod u+x ruleset_converter
+          ./ruleset_converter --input_format=filter-list --output_format=unindexed-ruleset \
+            --input_files=xinggsf_mv.txt \
+            --output_file=artifacts/filters.dat 2> /dev/null
 
       # - name: Upload Artifact
       #   uses: actions/upload-artifact@v1
