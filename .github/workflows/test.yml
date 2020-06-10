@@ -59,4 +59,4 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            ./filters.dat
+            ./filters/filters.dat
