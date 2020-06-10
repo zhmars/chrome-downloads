@@ -44,7 +44,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v1
         with:
-          name: artifacts
+          name: ${{ env.ARTIFACT_DIR }}
 
       - name: Create Release
         uses: softprops/action-gh-release@9993ae8
@@ -60,4 +60,4 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            ./artifacts/filters.dat
+            ./${{ env.ARTIFACT_DIR }}/filters.dat
