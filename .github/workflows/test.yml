@@ -15,14 +15,54 @@ jobs:
       - name: Download dependencies
         shell: bash
         run: |
+          # mkdir -p ${ARTIFACT_DIR}
+
+          # curl -f -L ${RULESET_CONVERTER_URL} -o ruleset_converter || exit 1
+          # curl -f -L https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt -o xinggsf_mv.txt  || exit 1
+
+          # chmod u+x ruleset_converter
+          # ./ruleset_converter --input_format=filter-list --output_format=unindexed-ruleset \
+          #   --input_files=xinggsf_mv.txt \
+          #   --output_file=${ARTIFACT_DIR}/filters.dat 2> /dev/null
+
+          filters=(
+            "https://easylist-downloads.adblockplus.org/easylist.txt"
+            "https://easylist-downloads.adblockplus.org/easylistchina.txt"
+            "https://raw.githubusercontent.com/cjx82630/cjxlist/master/cjx-annoyance.txt"
+            "https://easylist-downloads.adblockplus.org/easyprivacy.txt"
+            "https://easylist-downloads.adblockplus.org/fanboy-social.txt"
+            "https://easylist-downloads.adblockplus.org/antiadblockfilters.txt"
+            "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt"
+            "abp-filters-anti-cv-chinese.txt::https://raw.githubusercontent.com/abp-filters/abp-filters-anti-cv/master/chinese.txt"
+            "https://cdn.adblockcdn.com/filters/adblock_custom.txt"
+            "xinggsf_mv.txt::https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt"
+          )
+
+          exclude_rules=(
+            '^||youaima.com/zz/'
+          )
+
+          for filter in "${filters[@]}"; do
+            url="${filter##*::}"
+            src="${filter%%::*}"
+            src="${src##*/}"
+            srcs+=",${src}"
+
+            if [[ ! -f ${src} ]]; then
+              curl -f -L "${url}" -o "${src}"
+            fi
+
+            for rule in "${exclude_rules[@]}"; do
+              sed -i "\!${rule}!d" "${src}"
+            done
+          done
+          srcs=${srcs:1}
+
           mkdir -p ${ARTIFACT_DIR}
-
           curl -f -L ${RULESET_CONVERTER_URL} -o ruleset_converter || exit 1
-          curl -f -L https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt -o xinggsf_mv.txt  || exit 1
-
           chmod u+x ruleset_converter
           ./ruleset_converter --input_format=filter-list --output_format=unindexed-ruleset \
-            --input_files=xinggsf_mv.txt \
+            --input_files="${srcs}" \
             --output_file=${ARTIFACT_DIR}/filters.dat 2> /dev/null
 
       - name: Upload Artifact
