@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-      - uses: actions/checkout@master
+        uses: actions/checkout@master
 
       - name: Download dependencies
         shell: bash
@@ -30,4 +30,3 @@ jobs:
         with:
           name: filters
           path: ./package/artifacts
-
