@@ -4,6 +4,7 @@ on: [push, pull_request]
 
 env:
   RULESET_CONVERTER_URL: https://github.com/bromite/filters/releases/download/78.0.3904.130/ruleset_converter
+  ARTIFACT_DIR: artifacts
 
 jobs:
   build:
@@ -14,7 +15,7 @@ jobs:
       - name: Download dependencies
         shell: bash
         run: |
-          mkdir -p artifacts
+          mkdir -p ${ARTIFACT_DIR}
 
           curl -f -L ${RULESET_CONVERTER_URL} -o ruleset_converter || exit 1
           curl -f -L https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt -o xinggsf_mv.txt  || exit 1
@@ -22,13 +23,13 @@ jobs:
           chmod u+x ruleset_converter
           ./ruleset_converter --input_format=filter-list --output_format=unindexed-ruleset \
             --input_files=xinggsf_mv.txt \
-            --output_file=artifacts/filters.dat 2> /dev/null
+            --output_file=${ARTIFACT_DIR}/filters.dat 2> /dev/null
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: artifacts
-          path: ./artifacts
+          name: ${ARTIFACT_DIR}
+          path: ./${ARTIFACT_DIR}
 
   release:
     runs-on: ubuntu-latest
