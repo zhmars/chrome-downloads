@@ -80,8 +80,13 @@ jobs:
         shell: bash
         run: |
           git config --global core.autocrlf input
-          git config --local user.name 'CI'
-          git config --local user.email 'zhmars@users.noreply.github.com'
+
+      - uses: actions/checkout@master
+      - name: Checkout
+        shell: bash
+        run: |
+          git config --global user.name 'CI'
+          git config --global user.email 'zhmars@users.noreply.github.com'
           git tag -f nightly
           git push origin HEAD --tags
 
