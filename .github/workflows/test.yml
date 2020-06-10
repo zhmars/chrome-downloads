@@ -1,6 +1,11 @@
 ---
 name: test
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'
+
 
 env:
   RULESET_CONVERTER_URL: https://github.com/bromite/filters/releases/download/78.0.3904.130/ruleset_converter
