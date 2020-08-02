@@ -71,7 +71,7 @@ jobs:
             --output_file=${ARTIFACT_DIR}/filters.dat 2> /dev/null
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ env.ARTIFACT_DIR }}
           path: ./${{ env.ARTIFACT_DIR }}
@@ -97,12 +97,12 @@ jobs:
           git push origin HEAD --tags
 
       - name: Download Artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v2
         with:
           name: ${{ env.ARTIFACT_DIR }}
 
       - name: Create Release
-        uses: softprops/action-gh-release@9993ae8
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
