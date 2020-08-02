@@ -92,8 +92,8 @@ jobs:
         run: |
           git config --global user.name 'CI'
           git config --global user.email 'zhmars@users.noreply.github.com'
-          git tag --force nightly
-          git push origin --delete nightly || true
+          git tag --force bromite
+          git push origin --delete bromite || true
           git push origin HEAD --tags
 
       - name: Download Artifact
@@ -106,7 +106,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: nightly
+          tag_name: bromite
           body: |
 
             bromite filters
