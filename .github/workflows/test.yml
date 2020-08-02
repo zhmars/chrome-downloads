@@ -113,5 +113,8 @@ jobs:
 
           draft: false
           prerelease: false
+          # https://github.com/softprops/action-gh-release/issues/54
+          fail_on_unmatched_files: true
           files: |
-            ./${{ env.ARTIFACT_DIR }}/filters.dat
+            # ./${{ env.ARTIFACT_DIR }}/filters.dat
+            ./filters.dat
