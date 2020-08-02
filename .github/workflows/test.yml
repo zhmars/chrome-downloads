@@ -106,18 +106,18 @@ jobs:
           tag_name: bromite
           body: |
 
-          Bromite Custom Ad Block filters.
+            Bromite Custom Ad Block filters.
 
-          Credits
+            Credits
 
-          - [EasyList](https://easylist.to/#easylist)
-          - [Easylist China](https://easylist.to/pages/other-supplementary-filter-lists-and-easylist-variants.html#easylist-china)
-          - [EasyPrivacy](https://easylist.to/#easyprivacy)
-          - [CJX's Annoyance List](https://github.com/cjx82630/cjxlist)
-          - [Adblock Warning Removal List](https://easylist.to/pages/other-supplementary-filter-lists-and-easylist-variants.html#adblock-warning-removal-list)
-          - [ABP anti-circumvention filter list](https://github.com/abp-filters/abp-filters-anti-cv)
-          - [Peter Lowe's Ad and tracking server list](https://pgl.yoyo.org/adservers)
-          - [乘风视频广告过滤规则](https://gitee.com/xinggsf/Adblock-Rule)
+            - [EasyList](https://easylist.to/#easylist)
+            - [Easylist China](https://easylist.to/pages/other-supplementary-filter-lists-and-easylist-variants.html#easylist-china)
+            - [EasyPrivacy](https://easylist.to/#easyprivacy)
+            - [CJX's Annoyance List](https://github.com/cjx82630/cjxlist)
+            - [Adblock Warning Removal List](https://easylist.to/pages/other-supplementary-filter-lists-and-easylist-variants.html#adblock-warning-removal-list)
+            - [ABP anti-circumvention filter list](https://github.com/abp-filters/abp-filters-anti-cv)
+            - [Peter Lowe's Ad and tracking server list](https://pgl.yoyo.org/adservers)
+            - [乘风视频广告过滤规则](https://gitee.com/xinggsf/Adblock-Rule)
 
           draft: false
           prerelease: false
